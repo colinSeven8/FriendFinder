@@ -1,6 +1,5 @@
 // Dependencies
 // =============================================================
-let path = require('path');
 let friends = require("../data/friends.js");
 
 module.exports = (app) => {
@@ -10,12 +9,11 @@ module.exports = (app) => {
     app.post('/friends', (req, res) => {
         let matchMadeInHeaven = {
             'name': '',
-            'photo': '',
-            'scores': []
+            'photo': ''
         };
 
         let scoreDifference = 20;
 
-        
+        console.log(req.body);
     });
 }
