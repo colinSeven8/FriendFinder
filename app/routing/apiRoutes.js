@@ -12,8 +12,20 @@ module.exports = (app) => {
             'photo': ''
         };
 
-        let scoreDifference = 20;
+        // Score difference between the user and the other people
+        let scoreDifferences = [];
+        let tempScore = 0;
+        // Data references
+        let userData = req.body;
+        let userScores = userData.scores;
 
-        console.log(req.body);
+        // Loop through all friends and then their scores, and find the lowest difference
+        for (let i = 0; i < friends.length; i++) {
+            scoreDifferences = [];
+            for (let j = 0; j < userData.length; j++) {
+                scoreDifferences[i] = Math.abs(parseInt(friends[i].scores[j] - parseInt(userScores[j])));
+                if ()
+            }
+        }
     });
 }
