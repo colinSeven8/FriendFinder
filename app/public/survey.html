@@ -183,7 +183,7 @@
                 </div>
                 <div class="modal-body">
                     <h2 id="match-name"></h2>
-                    <img id="match-img" src="" alt="match image" style="height: 300px; width: 300px;">
+                    <img id="match-photo" src="" alt="match image" style="height: 300px; width: 300px;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -205,17 +205,17 @@
     <script type="text/javascript">
 
         // Form inputs
-        $("#submit").on("click", function (event) {
+        $("#submit").on("click", (event) => {
             event.preventDefault();
             // Check if either the text fields or the inputs are still default
             function validateForm() {
                 let isValid = true;
-                $(".form-control").each(function () {
+                $(".form-control").each(() => {
                     if ($(this).val() === "") {
                         isValid = false;
                     }
                 });
-                $(".custom-select").each(function () {
+                $(".custom-select").each(() => {
                     if ($(this).val() === "Select an option") {
                         isValid = false;
                     }
@@ -229,22 +229,28 @@
                     name: $("#name").val(),
                     photo: $("#photo").val(),
                     scores: [
-                        parseInt($("#q1").val()),
-                        parseInt($("#q2").val()),
-                        parseInt($("#q4").val()),
-                        parseInt($("#q3").val()),
-                        parseInt($("#q5").val()),
-                        parseInt($("#q6").val()),
-                        parseInt($("#q7").val()),
-                        parseInt($("#q8").val()),
-                        parseInt($("#q9").val()),
-                        parseInt($("#q10").val())
+                        $("#q1").val(),
+                        $("#q2").val(),
+                        $("#q4").val(),
+                        $("#q3").val(),
+                        $("#q5").val(),
+                        $("#q6").val(),
+                        $("#q7").val(),
+                        $("#q8").val(),
+                        $("#q9").val(),
+                        $("#q10").val()
                     ]
                 };
-
+                let currentURL = window.location.origin;
+                $.post(currentURL + '/api/friends', userData, (data) => {
+                    $('#match-name').text(data.name);
+                    $('#match-photo').attr('src', data.photo);
+                    $('#results-modal').modal('toggle');
+                });
             } else {
                 alert("Please fill out all fields before submitting!");
             }
+            return false;
         });
 
     </script>
