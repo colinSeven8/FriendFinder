@@ -205,17 +205,17 @@
     <script type="text/javascript">
 
         // Form inputs
-        $("#submit").on("click", (event) => {
+        $("#submit").on("click", function (event) {
             event.preventDefault();
             // Check if either the text fields or the inputs are still default
             function validateForm() {
                 let isValid = true;
-                $(".form-control").each(() => {
+                $(".form-control").each(function() {
                     if ($(this).val() === "") {
                         isValid = false;
                     }
                 });
-                $(".custom-select").each(() => {
+                $(".custom-select").each(function () {
                     if ($(this).val() === "Select an option") {
                         isValid = false;
                     }

@@ -3,11 +3,11 @@
 let friends = require("../data/friends");
 
 module.exports = (app) => {
-    app.get('/../api/friends', (req, res) => {
+    app.get('/api/friends', function (req, res) {
         res.json(friends);
-        console.log(json(friends));
+        console.log('Were in apiRoutes GET!');
     });
-    app.post('/friends', (req, res) => {
+    app.post('/api/friends', function (req, res) {
         let matchMadeInHeaven = {
             'name': '',
             'photo': ''
@@ -23,21 +23,24 @@ module.exports = (app) => {
         // Data references
         let userData = req.body;
         let userScores = userData.scores;
+        console.log('Were in apiRoutes POST!');
 
         // Loop through all friends and then their scores, and find the lowest difference
         for (let i = 0; i < friends.length; i++) {
             tempScore = 0;
             for (let j = 0; j < userData.length; j++) {
                 tempScore += Math.abs(parseInt(friends[i].scores[j] - parseInt(userScores[j])));
-                console.log(tempScore);
+                console.log('friends[i].scores[j] ' + friends[i].scores[j]);
+                console.log('parseInt(userScores[j]) ' + parseInt(userScores[j]));
+                console.log('tempScore ' + tempScore);
             }
             // Found the lowest score out of everyone...
             if (lowestScore < tempScore) {
                 lowestScore = tempScore;
                 friendIndex = i;
+                console.log('lowestScore ' + lowestScore);
             }
         }
-        console.log(lowestScore);
 
         // Add the newest friend to the list
         friends.push(userData);
@@ -48,6 +51,5 @@ module.exports = (app) => {
 
         // Return the best match
         res.json(matchMadeInHeaven);
-        console.log(matchMadeInHeaven);
     });
 }
