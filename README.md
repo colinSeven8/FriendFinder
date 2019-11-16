@@ -15,19 +15,23 @@ FriendFinder will seriously find you a seriously great companion...seriously. Th
 ## Screenshots
 
 ### FriendFinder Home Page
-![](Screenshots/concert-this.png)
+![](assets/images/home.png)
 
 ****
 ### List of Friends
-![](Screenshots/spotify-this-song.png)
+![](assets/images/friends.png)
 
 ****
-### GitHub pages
-![](Screenshots/movie-this.png)
+### GitHub Pages
+![](assets/images/github.png)
+
+****
+### Take the Survey
+![](assets/images/survey.png)
 
 ****
 ### The Survey Says....
-![](Screenshots/do-what-it-says.png)
+![](assets/images/results.png)
 
 ****
 ## Setting up FriendFinder...
