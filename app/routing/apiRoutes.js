@@ -1,8 +1,9 @@
 // Dependencies
 // =============================================================
 let friends = require("../data/friends");
+let path = require('path');
 
-module.exports = (app) => {
+module.exports = function (app) {
     app.get('/api/friends', function (req, res) {
         res.json(friends);
         console.log('Were in apiRoutes GET!');
@@ -13,7 +14,7 @@ module.exports = (app) => {
             'photo': ''
         };
 
-        // Score difference between the user and the other people
+        // Score difference between the user and the other people, and index to use later
         let friendIndex = 0;
         let tempScore = 0;
 
@@ -23,19 +24,23 @@ module.exports = (app) => {
         // Data references
         let userData = req.body;
         let userScores = userData.scores;
-        console.log('Were in apiRoutes POST!');
+        console.log('Before FOR LOOP! userScores ' + userScores.length);
+        console.log('Before FOR LOOP! friends ' + friends.length);
+        console.log('Before FOR LOOP! userData ' + userData);
 
         // Loop through all friends and then their scores, and find the lowest difference
         for (let i = 0; i < friends.length; i++) {
+            console.log('Inside FOR LOOP! ' + userScores.length);
             tempScore = 0;
-            for (let j = 0; j < userData.length; j++) {
-                tempScore += Math.abs(parseInt(friends[i].scores[j] - parseInt(userScores[j])));
+            for (let j = 0; j < userScores.length; j++) {
+                console.log('Inside inside FOR LOOP!');
+                tempScore += Math.abs(parseInt(friends[i].scores[j]) - parseInt(userScores[j]));
                 console.log('friends[i].scores[j] ' + friends[i].scores[j]);
                 console.log('parseInt(userScores[j]) ' + parseInt(userScores[j]));
                 console.log('tempScore ' + tempScore);
             }
             // Found the lowest score out of everyone...
-            if (lowestScore < tempScore) {
+            if (tempScore < lowestScore) {
                 lowestScore = tempScore;
                 friendIndex = i;
                 console.log('lowestScore ' + lowestScore);
@@ -51,5 +56,6 @@ module.exports = (app) => {
 
         // Return the best match
         res.json(matchMadeInHeaven);
+        console.log('Were in apiRoutes POST!');
     });
 }

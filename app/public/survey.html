@@ -161,12 +161,14 @@
         <br>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle"
+                aria-hidden="true"></i>
             Submit</button>
         <hr>
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/colinseven8/FriendFinder">GitHub Repo</a></p>
+                <p><a href="/api/friends">API Friends List</a> | <a
+                        href="https://github.com/colinseven8/FriendFinder">GitHub Repo</a></p>
             </div>
         </footer>
     </div>
@@ -183,7 +185,7 @@
                 </div>
                 <div class="modal-body">
                     <h2 id="match-name"></h2>
-                    <img id="match-photo" src="" alt="match image" style="height: 300px; width: 300px;">
+                    <img id="match-photo" src="" alt="Your match's image" style="height: 300px; width: 300px;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -210,7 +212,7 @@
             // Check if either the text fields or the inputs are still default
             function validateForm() {
                 let isValid = true;
-                $(".form-control").each(function() {
+                $(".form-control").each(function () {
                     if ($(this).val() === "") {
                         isValid = false;
                     }
@@ -242,7 +244,11 @@
                     ]
                 };
                 let currentURL = window.location.origin;
+                // $.get(currentURL + '/api/friends', (data) => {
+                //     res.json(data);
+                // });
                 $.post(currentURL + '/api/friends', userData, (data) => {
+                    console.log("POST data.name " + data.name);
                     $('#match-name').text(data.name);
                     $('#match-photo').attr('src', data.photo);
                     $('#results-modal').modal('toggle');
