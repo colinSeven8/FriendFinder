@@ -62,4 +62,4 @@ Colin Reesor created this version of the FriendFinder!
 ****
 ## Find your friend!
 
-Click [here](https://friend-finder-colin.herokuapp.com/) tp try it out!
+Click [here](https://friend-finder-colin.herokuapp.com/) to try it out!
